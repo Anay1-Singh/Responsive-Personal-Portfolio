@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anay Singh | Portfolio</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ========== BASE / THEME ========== */
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --accent: #38bdf8;
+      --accent-soft: #0ea5e9;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #1f2937;
+      --radius: 0.75rem;
+      --shadow-soft: 0 0.5rem 1.5rem rgba(0,0,0,0.40);
+      --shadow-card: 0 0.75rem 2rem rgba(15, 23, 42, 0.9);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #1d2538 0, #020617 50%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      scroll-behavior: smooth;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ========== NAVIGATION ========== */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(148,163,184,0.25);
+      z-index: 50;
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .brand-dot {
+      width: 0.6rem;
+      height: 0.6rem;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 1.8s infinite;
+      box-shadow: 0 0 12px var(--accent);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      position: relative;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      transition: 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* ========== HERO ========== */
+    .page {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .hero {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .hero-title {
+      font-size: 2.4rem;
+      font-weight: 600;
+      line-height: 1.2;
+      animation: float 3s infinite alternate;
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      color: var(--muted);
+    }
+
+    .hero-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--accent);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      color:#000;
+      font-size:2rem;
+      font-weight:700;
+      margin-top:1rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 0.7rem 1.4rem;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      font-size:1rem;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-soft);
+      transform: scale(1.05);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-ghost:hover {
+      transform: scale(1.05);
+      background: rgba(56,189,248,0.1);
+    }
+
+    /* ========== SKILLS (GRID) ========== */
+    #skills table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      padding: 0.8rem;
+      border-bottom: 1px solid rgba(148,163,184,0.3);
+    }
+
+    th {
+      background: #1f2937;
+      color: var(--accent);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    tr:nth-child(even) {
+      background: rgba(255,255,255,0.03);
+    }
+
+    /* ========== PROJECTS (GRID) ========== */
+    .projects-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: #1f2937;
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      transition: 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-card);
+      border-color: var(--accent);
+    }
+
+    /* ========== CONTACT FORM ========== */
+    input, textarea {
+      width: 100%;
+      padding: 0.7rem;
+      margin-top: 0.4rem;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background: #0f172a;
+      color: var(--text);
+    }
+
+    input:focus, textarea:focus {
+      outline: 2px solid var(--accent);
+    }
+
+    textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    /* ========== BACK TO TOP BUTTON ========== */
+    .to-top {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: var(--accent);
+      color: #000;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .to-top:hover {
+      transform: scale(1.15);
+      background: var(--accent-soft);
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      padding: 1rem;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ========== ANIMATIONS ========== */
+    @keyframes float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-8px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.25); }
+    }
+
+    /* ========== MEDIA QUERIES ========== */
+    @media (min-width: 768px) {
+      .hero {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body id="top">
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <span class="brand-dot"></span> Anay Singh
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <div>
+      <h1 class="hero-title">Hi, I'm <span>Anay Singh</span>.</h1>
+      <p class="hero-sub">A beginner front-end developer learning HTML, CSS, Flexbox, Grid & JavaScript.</p>
+
+      <div style="margin-top:1rem; display:flex; gap:1rem;">
+        <button class="btn btn-primary">View Projects</button>
+        <button class="btn btn-ghost">Contact Me</button>
+      </div>
+    </div>
+
+    <div class="hero-avatar">A</div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills</h2>
+
+    <table>
+      <tr>
+        <th>Skill</th>
+        <th>Level</th>
+      </tr>
+      <tr>
+        <td>HTML</td>
+        <td>Intermediate</td>
+      </tr>
+      <tr>
+        <td>CSS</td>
+        <td>Intermediate</td>
+      </tr>
+      <tr>
+        <td>JavaScript</td>
+        <td>Beginner</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>Portfolio Website</h3>
+        <p>A modern responsive portfolio made using Flexbox and Grid.</p>
+      </div>
+
+      <div class="project-card">
+        <h3>Landing Page</h3>
+        <p>Clean UI design using CSS animations and transitions.</p>
+      </div>
+
+      <div class="project-card">
+        <h3>Mini Components</h3>
+        <p>Reusable components like cards, buttons and navbars.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+
+    <form>
+      <label>Name</label>
+      <input type="text" placeholder="Your Name">
+
+      <label>Email</label>
+      <input type="email" placeholder="you@example.com">
+
+      <label>Message</label>
+      <textarea placeholder="Write something..."></textarea>
+
+      <button class="btn btn-primary" style="margin-top:1rem;">Send Message</button>
+    </form>
+  </section>
+
+</div>
+
+<button class="to-top" onclick="location.href='#top'">↑</button>
+
+<footer>© 2025 Anay Singh • All Rights Reserved.</footer>
+
+</body>
+</html>
